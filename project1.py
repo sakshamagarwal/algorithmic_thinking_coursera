@@ -40,13 +40,10 @@ def compute_in_degrees(digraph):
         and returns a dictionary with the same set of keys (nodes) as digraph 
         whose corresponding values are the 
         number of edges whose head matches a particular node."""
-    result = {}
-    for idx in digraph.keys():
-        result[idx] = 0
-        for jdx in digraph.values():
-            for kdx in jdx:
-                if (kdx==idx):
-                    result[idx] += 1
+    result = dict([(x, 0) for x in digraph])
+    for jdx in digraph.values():
+        for kdx in jdx:
+            result[kdx] += 1
     return result
         
 def in_degree_distribution(digraph):
@@ -57,14 +54,15 @@ def in_degree_distribution(digraph):
         particular in-degree is the number of nodes with that in-degree."""
     in_degree_dictionary = compute_in_degrees(digraph)
     result = {}
-    for idx in in_degree_dictionary.keys():
-        count = 0
-        if (in_degree_dictionary[idx]!=-1):
-            for jdx in in_degree_dictionary.keys():
-                if (in_degree_dictionary[jdx] == in_degree_dictionary[idx]):
-                    count += 1
-        if (count!=0):
-            result[in_degree_dictionary[idx]] = count
+    for idx in in_degree_dictionary.values():
+        if idx in in_degree_dictionary.keys():
+            in_degree_dictionary[idx] += 1
+        else:
+            in_degree_dictionary[idx] = 1
     return result
+
+
+
+
 
                 
