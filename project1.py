@@ -55,10 +55,10 @@ def in_degree_distribution(digraph):
     in_degree_dictionary = compute_in_degrees(digraph)
     result = {}
     for idx in in_degree_dictionary.values():
-        if idx in in_degree_dictionary.keys():
-            in_degree_dictionary[idx] += 1
+        if idx in result.keys():
+            result[idx] += 1
         else:
-            in_degree_dictionary[idx] = 1
+            result[idx] = 1
     return result
 
 
